@@ -44,11 +44,13 @@ WHERE 25000000>ALL(
       FROM world y
       WHERE 
             y.continent=x.continent
-            and y.population>0);																										
-																										
-																										
-																										
-																										
-																										
+            and y.population>0);																																																																																																					
+--10.Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents.																										
+SELECT x.name, x.continent 
+FROM world as x
+WHERE x.population >= ALL(SELECT y.population*3 
+                         FROM world as y
+                         WHERE y.continent=x.continent
+                         AND x.name<>y.name)																										
 																										
 																										
